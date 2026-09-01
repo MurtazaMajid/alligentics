@@ -139,7 +139,6 @@ function HeroImage() {
           width={1920}
           height={912}
           className="w-full h-full object-cover"
-          priority="true"
         />
       </div>
     </section>
