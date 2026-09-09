@@ -33,7 +33,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import logo from "../assets/alligentics-logo.png.asset.json";
+import logoMark from "../assets/alligentics-mark.png.asset.json";
 import heroNetwork from "../assets/hero-network.jpg";
 
 const TITLE = "Alligentics — AI Automation Systems for Modern Businesses";
@@ -109,12 +109,13 @@ function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
         <a href="/" className="flex items-center gap-3" aria-label="Alligentics home">
           <img
-            src={logo.url}
-            alt="Alligentics logo"
-            width={140}
-            height={40}
-            className="h-9 w-auto brightness-0 invert"
+            src={logoMark.url}
+            alt=""
+            width={55}
+            height={38}
+            className="h-9 w-auto"
           />
+          <span className="font-display text-xl font-semibold text-foreground">Alligentics</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((item) => (
@@ -800,12 +801,12 @@ function Footer() {
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
         <img
-          src={logo.url}
-          alt="Alligentics logo"
-          width={140}
-          height={40}
+          src={logoMark.url}
+          alt="Alligentics"
+          width={47}
+          height={32}
           loading="lazy"
-          className="h-8 w-auto brightness-0 invert"
+          className="h-8 w-auto"
         />
         <nav className="flex flex-wrap gap-7 text-sm text-muted-foreground">
           {NAV.map((item) => (
