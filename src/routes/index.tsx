@@ -35,6 +35,14 @@ import {
 
 import logoMark from "../assets/alligentics-mark.png.asset.json";
 import heroNetwork from "../assets/hero-network.jpg";
+import {
+  Capabilities,
+  HumanLoop,
+  Insights,
+  LeadJourney,
+  Packages,
+  Process,
+} from "../components/site-sections";
 
 const TITLE = "Alligentics — AI Automation Systems for Modern Businesses";
 const DESCRIPTION =
