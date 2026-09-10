@@ -35,6 +35,14 @@ import {
 
 import logoMark from "../assets/alligentics-mark.png.asset.json";
 import heroNetwork from "../assets/hero-network.jpg";
+import {
+  Capabilities,
+  HumanLoop,
+  Insights,
+  LeadJourney,
+  Packages,
+  Process,
+} from "../components/site-sections";
 
 const TITLE = "Alligentics — AI Automation Systems for Modern Businesses";
 const DESCRIPTION =
@@ -82,9 +90,15 @@ function Index() {
         <Problem />
         <Services />
         <Difference />
+        <Capabilities />
+        <LeadJourney />
         <Anatomy />
+        <Insights />
         <Methodology />
+        <Process />
+        <HumanLoop />
         <ValueMap />
+        <Packages />
         <WhyUs />
         <Partners />
         <Manifesto />
@@ -98,8 +112,9 @@ function Index() {
 
 const NAV = [
   { href: "#services", label: "Services" },
-  { href: "#approach", label: "Approach" },
-  { href: "#value", label: "Value" },
+  { href: "#automation", label: "What we automate" },
+  { href: "#process", label: "Process" },
+  { href: "#packages", label: "Packages" },
   { href: "#team", label: "Team" },
 ];
 
