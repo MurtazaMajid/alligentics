@@ -90,9 +90,15 @@ function Index() {
         <Problem />
         <Services />
         <Difference />
+        <Capabilities />
+        <LeadJourney />
         <Anatomy />
+        <Insights />
         <Methodology />
+        <Process />
+        <HumanLoop />
         <ValueMap />
+        <Packages />
         <WhyUs />
         <Partners />
         <Manifesto />
@@ -106,8 +112,9 @@ function Index() {
 
 const NAV = [
   { href: "#services", label: "Services" },
-  { href: "#approach", label: "Approach" },
-  { href: "#value", label: "Value" },
+  { href: "#automation", label: "What we automate" },
+  { href: "#process", label: "Process" },
+  { href: "#packages", label: "Packages" },
   { href: "#team", label: "Team" },
 ];
 
