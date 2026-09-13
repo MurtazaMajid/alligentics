@@ -437,7 +437,7 @@ export function Packages() {
             <h3 className="font-display text-xl font-semibold">{tier}</h3>
             <dl className="mt-5 divide-y divide-border">
               {PACKAGE_ROWS.map((row) => {
-                const value = row.values[tierIndex];
+                const value = row.values[tierIndex] ?? false;
                 return (
                   <div key={`${tier}-${row.feature}`} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3">
                     <dt className="min-w-0 text-sm leading-5 text-muted-foreground">{row.feature}</dt>
