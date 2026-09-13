@@ -356,7 +356,7 @@ const SERVICES = [
     number: "01",
     icon: Bot,
     title: "AI assistants",
-    body: "Support and reception agents across WhatsApp, website, email, and phone — with intent classification, knowledge retrieval, ticketing, and clean human escalation.",
+    body: "Support and reception agents for WhatsApp, websites, email, and phone, with reliable handover to your team when needed.",
     wide: true,
   },
   {
@@ -381,7 +381,7 @@ const SERVICES = [
     number: "05",
     icon: Boxes,
     title: "Business integrations",
-    body: "Your entire stack connected — CRM, comms, storage, finance, and internal tools.",
+    body: "Connect your CRM, communications, storage, finance, and internal tools.",
   },
   {
     number: "06",
@@ -394,7 +394,7 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section id="services" className="relative overflow-hidden border-y border-border bg-surface/30">
+    <section id="services" className="relative scroll-mt-20 overflow-hidden border-y border-border bg-surface/30">
       <div className="glow-orb absolute -right-20 top-10 h-80 w-80" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
@@ -716,7 +716,7 @@ const TEAM = [
 
 function Team() {
   return (
-    <section id="team" className="border-y border-border bg-surface/30">
+    <section id="team" className="scroll-mt-20 border-y border-border bg-surface/30">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading eyebrow="Founding team" title="The people behind the systems" />
         <div className="mt-14 grid gap-5 sm:grid-cols-3">
@@ -753,7 +753,7 @@ const CONTACT_LINKS = [
 
 function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden">
+    <section id="contact" className="relative scroll-mt-20 overflow-hidden">
       <div className="glow-orb absolute -bottom-20 right-0 h-96 w-96" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <div className="surface-panel grid gap-10 rounded-2xl p-6 sm:p-8 md:p-14 lg:grid-cols-12">

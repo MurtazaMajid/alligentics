@@ -148,11 +148,11 @@ export function LeadJourney() {
         title="From first message to booked appointment"
         intro="One trigger, one connected chain of actions. Less manual work, faster responses, fewer missed opportunities."
       />
-      <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <ol className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-5">
         {JOURNEY.map((step, index) => (
           <li
             key={step}
-            className="animate-rise rounded-xl border border-border bg-background/50 p-5"
+            className="animate-rise min-w-0 rounded-xl border border-border bg-background/50 p-4 sm:p-5"
             style={{ animationDelay: `${index * 0.05}s` }}
           >
             <span className="font-mono text-[11px] text-primary">
@@ -178,7 +178,7 @@ const BRIEF = [
 const RECOVERY = [
   { icon: PhoneMissed, title: "Missed-lead recovery", body: "A missed call triggers an instant message, an AI conversation, qualification, then a nudge to your sales team." },
   { icon: Star, title: "Feedback automation", body: "Happy customers are asked for a review; unhappy ones reach management before they reach the internet." },
-  { icon: CalendarCheck, title: "Scheduling", body: "AI checks slots, books, confirms, reminds and reschedules — ideal for clinics, salons, real estate and consultants." },
+  { icon: CalendarCheck, title: "Scheduling", body: "AI checks availability, books appointments, sends reminders, and handles rescheduling for your team." },
   { icon: FileStack, title: "Document processing", body: "Invoices, quotations, forms and CVs read, validated, stored and passed to the next step automatically." },
 ];
 
