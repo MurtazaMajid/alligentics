@@ -44,7 +44,7 @@ import {
   Process,
 } from "../components/site-sections";
 
-const TITLE = "Alligentics — AI Automation Systems for Modern Businesses";
+const TITLE = "Alligentics | AI Automation for Modern Businesses";
 const DESCRIPTION =
   "Alligentics builds custom AI automation: assistants, workflow orchestration, lead and document automation, and business integrations that connect your entire tech stack.";
 
@@ -121,16 +121,16 @@ const NAV = [
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-        <a href="/" className="flex items-center gap-3" aria-label="Alligentics home">
+      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 sm:flex sm:gap-6 sm:px-6 sm:py-4">
+        <a href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Alligentics home">
           <img
             src={logoMark.url}
             alt=""
             width={55}
             height={38}
-            className="h-9 w-auto"
+            className="h-8 w-auto shrink-0 sm:h-9"
           />
-          <span className="font-display text-xl font-semibold text-foreground">Alligentics</span>
+          <span className="truncate font-display text-lg font-semibold text-foreground sm:text-xl">Alligentics</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((item) => (
@@ -145,10 +145,11 @@ function Header() {
         </nav>
         <a
           href="#contact"
-          className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+          className="group inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] sm:gap-2 sm:px-5"
           style={{ background: "var(--gradient-brand)" }}
         >
-          Book a discovery call
+          <span className="sm:hidden">Book a call</span>
+          <span className="hidden sm:inline">Book a discovery call</span>
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
@@ -174,27 +175,26 @@ function Hero() {
       <div className="grid-veil absolute inset-0 opacity-60" aria-hidden="true" />
       <div className="glow-orb animate-float-slow absolute -left-24 top-24 h-72 w-72" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 md:pb-32 md:pt-28">
-        <span className="animate-rise inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-primary backdrop-blur">
+      <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-6 md:pb-32 md:pt-28">
+        <span className="animate-rise inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-primary backdrop-blur sm:px-4 sm:text-[11px] sm:tracking-[0.18em]">
           <Sparkles className="h-3.5 w-3.5" />
-          Business-first · AI-enabled · Custom-built
+          Business-first · AI-enabled · Built for you
         </span>
 
-        <h1 className="animate-rise mt-8 max-w-[24ch] font-display text-[clamp(2.5rem,6.4vw,5rem)] font-bold leading-[1.03] tracking-tight [animation-delay:0.08s]">
+        <h1 className="animate-rise mt-7 max-w-[24ch] font-display text-[2.5rem] font-bold leading-[1.05] tracking-normal sm:text-[clamp(2.5rem,6.4vw,5rem)] sm:tracking-tight [animation-delay:0.08s]">
           Your team shouldn't spend hours doing work{" "}
           <span className="text-gradient">software can handle.</span>
         </h1>
 
-        <p className="animate-rise mt-7 max-w-[56ch] text-lg leading-relaxed text-muted-foreground [animation-delay:0.16s]">
-          Alligentics finds the work that shouldn't be manual anymore — then designs,
-          builds, and runs intelligent systems that handle it end to end across your
-          existing tools.
+        <p className="animate-rise mt-6 max-w-[56ch] text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-relaxed [animation-delay:0.16s]">
+          We identify repetitive work, then build intelligent systems that handle it
+          across the tools your team already uses.
         </p>
 
-        <div className="animate-rise mt-10 flex flex-wrap items-center gap-4 [animation-delay:0.24s]">
+        <div className="animate-rise mt-8 grid gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-4 [animation-delay:0.24s]">
           <a
             href="#contact"
-            className="animate-pulse-ring inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-primary-foreground"
+            className="animate-pulse-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold text-primary-foreground sm:px-7 sm:py-3.5"
             style={{ background: "var(--gradient-brand)" }}
           >
             Book a discovery session
@@ -202,13 +202,13 @@ function Hero() {
           </a>
           <a
             href="#services"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-center text-sm font-medium text-foreground transition-colors hover:bg-surface sm:px-7 sm:py-3.5"
           >
             See what we automate
           </a>
         </div>
 
-        <dl className="animate-rise mt-16 grid max-w-3xl grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4 [animation-delay:0.32s]">
+        <dl className="animate-rise mt-12 grid max-w-3xl grid-cols-2 gap-x-5 gap-y-7 border-t border-border pt-7 sm:mt-16 sm:gap-8 sm:pt-8 md:grid-cols-4 [animation-delay:0.32s]">
           {[
             { value: "6-step", label: "Automation methodology" },
             { value: "End-to-end", label: "Workflow coverage" },
@@ -276,14 +276,14 @@ function SectionHeading({
 }) {
   return (
     <div className={`max-w-3xl ${className}`}>
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary sm:text-[11px] sm:tracking-[0.22em]">
         {eyebrow}
       </p>
-      <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-balance">
+      <h2 className="mt-4 font-display text-[2rem] font-bold leading-[1.12] tracking-normal text-balance sm:text-[clamp(2rem,4vw,3.25rem)] sm:leading-[1.08] sm:tracking-tight">
         {title}
       </h2>
       {intro ? (
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground text-pretty">
+        <p className="mt-4 text-base leading-7 text-muted-foreground text-pretty sm:mt-5 sm:text-lg sm:leading-relaxed">
           {intro}
         </p>
       ) : null}
@@ -326,7 +326,7 @@ const PROBLEMS = [
 
 function Problem() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="The bottleneck"
         title="The problem isn't a lack of software."
@@ -356,7 +356,7 @@ const SERVICES = [
     number: "01",
     icon: Bot,
     title: "AI assistants",
-    body: "Support and reception agents across WhatsApp, website, email, and phone — with intent classification, knowledge retrieval, ticketing, and clean human escalation.",
+    body: "Support and reception agents for WhatsApp, websites, email, and phone, with reliable handover to your team when needed.",
     wide: true,
   },
   {
@@ -381,7 +381,7 @@ const SERVICES = [
     number: "05",
     icon: Boxes,
     title: "Business integrations",
-    body: "Your entire stack connected — CRM, comms, storage, finance, and internal tools.",
+    body: "Connect your CRM, communications, storage, finance, and internal tools.",
   },
   {
     number: "06",
@@ -394,9 +394,9 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section id="services" className="relative overflow-hidden border-y border-border bg-surface/30">
+    <section id="services" className="relative scroll-mt-20 overflow-hidden border-y border-border bg-surface/30">
       <div className="glow-orb absolute -right-20 top-10 h-80 w-80" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="What we build"
           title="From manual processes to automated systems"
@@ -433,12 +433,12 @@ function Services() {
 
 function Difference() {
   return (
-    <section id="approach" className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section id="approach" className="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="The strategic shift"
         title={
           <>
-            We're not here to sell you{" "}
+            We do more than sell you{" "}
             <span className="text-gradient">another AI tool.</span>
           </>
         }
@@ -503,10 +503,10 @@ const ANATOMY = [
 function Anatomy() {
   return (
     <section className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="The Alligentics difference"
-          title="We automate the workflow — not just the task"
+          title="We automate the workflow, not just the task"
           intro="A reply is not automation. One automation should connect an entire business process, from first message to logged outcome."
         />
         <ol className="mt-14 grid gap-5 md:grid-cols-3 lg:grid-cols-5">
@@ -541,7 +541,7 @@ const METHOD = [
 
 function Methodology() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="Methodology"
         title="Every business is different. Your automation should be too."
@@ -582,7 +582,7 @@ const DEPARTMENTS = [
 function ValueMap() {
   return (
     <section id="value" className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading
@@ -637,7 +637,7 @@ function WhyUs() {
             <span className="text-gradient">better workflows.</span>
           </>
         }
-        intro="Less manual labour, faster processing, fewer errors, clearer data, stronger pipeline — and a foundation that scales."
+        intro="Reduce manual work, process tasks faster, prevent errors, and build a stronger sales pipeline."
       />
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {REASONS.map((reason, index) => (
@@ -666,7 +666,7 @@ const PARTNERS = [
 function Partners() {
   return (
     <section className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="Ideal partners"
           title="Built for businesses ready to work smarter"
@@ -697,7 +697,7 @@ function Manifesto() {
       <div className="relative mx-auto max-w-4xl px-6 py-28 text-center md:py-36">
         <p className="animate-rise font-display text-[clamp(1.6rem,3.4vw,2.75rem)] font-medium leading-[1.25] text-balance">
           We don't automate for the sake of automation. We find the work that shouldn't
-          be manual anymore — and build systems to handle it{" "}
+          be manual anymore, and build systems to handle it{" "}
           <span className="text-gradient">intelligently.</span>
         </p>
         <p className="mt-10 font-mono text-xs uppercase tracking-[0.4em] text-muted-foreground">
@@ -716,8 +716,8 @@ const TEAM = [
 
 function Team() {
   return (
-    <section id="team" className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section id="team" className="scroll-mt-20 border-y border-border bg-surface/30">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading eyebrow="Founding team" title="The people behind the systems" />
         <div className="mt-14 grid gap-5 sm:grid-cols-3">
           {TEAM.map((member, index) => (
@@ -753,20 +753,20 @@ const CONTACT_LINKS = [
 
 function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden">
+    <section id="contact" className="relative scroll-mt-20 overflow-hidden">
       <div className="glow-orb absolute -bottom-20 right-0 h-96 w-96" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <div className="surface-panel grid gap-12 rounded-3xl p-8 md:p-14 lg:grid-cols-12">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
+        <div className="surface-panel grid gap-10 rounded-2xl p-6 sm:p-8 md:p-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
               Connect with us
             </p>
-            <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-balance">
+            <h2 className="mt-4 font-display text-[2rem] font-bold leading-[1.12] tracking-normal text-balance sm:text-[clamp(2rem,4vw,3.25rem)] sm:leading-[1.08] sm:tracking-tight">
               Book a discovery session
             </h2>
-            <p className="mt-5 max-w-[52ch] text-lg leading-relaxed text-muted-foreground">
-              We'll identify high-impact areas for automation, streamline your workflows,
-              and give you a clear plan to scale your operations.
+            <p className="mt-4 max-w-[52ch] text-base leading-7 text-muted-foreground sm:mt-5 sm:text-lg sm:leading-relaxed">
+              We will identify practical automation opportunities and give you a clear
+              plan for improving your operation.
             </p>
             <a
               href="mailto:alligenticsai@gmail.com?subject=Discovery%20session%20with%20Alligentics"
@@ -782,11 +782,11 @@ function Contact() {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-background/50 px-5 py-4 transition-colors hover:bg-surface"
+                    className="group grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-xl border border-border bg-background/50 px-4 py-4 transition-colors hover:bg-surface sm:px-5"
                 >
-                  <span className="flex items-center gap-3 text-sm">
-                    <link.icon className="h-4.5 w-4.5 text-primary" />
-                    {link.label}
+                  <span className="flex min-w-0 items-center gap-3 text-sm">
+                    <link.icon className="h-4.5 w-4.5 shrink-0 text-primary" />
+                    <span className="min-w-0 break-all">{link.label}</span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
@@ -795,11 +795,11 @@ function Contact() {
             <li>
               <a
                 href="https://alligentics.lovable.app"
-                className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-background/50 px-5 py-4 transition-colors hover:bg-surface"
+                className="group grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-xl border border-border bg-background/50 px-4 py-4 transition-colors hover:bg-surface sm:px-5"
               >
-                <span className="flex items-center gap-3 text-sm">
-                  <Globe className="h-4.5 w-4.5 text-primary" />
-                  alligentics.lovable.app
+                <span className="flex min-w-0 items-center gap-3 text-sm">
+                  <Globe className="h-4.5 w-4.5 shrink-0 text-primary" />
+                  <span className="min-w-0 break-all">alligentics.lovable.app</span>
                 </span>
                 <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>

@@ -29,12 +29,12 @@ function SectionHeading({
 }) {
   return (
     <div className={`max-w-3xl ${className}`}>
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">{eyebrow}</p>
-      <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.08] tracking-tight text-balance">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary sm:text-[11px] sm:tracking-[0.22em]">{eyebrow}</p>
+      <h2 className="mt-4 font-display text-[2rem] font-bold leading-[1.12] tracking-normal text-balance sm:text-[clamp(2rem,4vw,3.25rem)] sm:leading-[1.08] sm:tracking-tight">
         {title}
       </h2>
       {intro ? (
-        <p className="mt-5 text-lg leading-relaxed text-muted-foreground text-pretty">{intro}</p>
+        <p className="mt-4 text-base leading-7 text-muted-foreground text-pretty sm:mt-5 sm:text-lg sm:leading-relaxed">{intro}</p>
       ) : null}
     </div>
   );
@@ -49,7 +49,7 @@ const CAPABILITIES = [
       "Lead qualification and information capture",
       "Appointment booking and order status",
       "Automatic follow-ups with human handover",
-      "WhatsApp → CRM, email and internal alerts",
+      "WhatsApp connected to CRM, email and internal alerts",
     ],
   },
   {
@@ -68,7 +68,7 @@ const CAPABILITIES = [
     title: "Email automation",
     points: [
       "AI-assisted replies and classification",
-      "Email → WhatsApp alerts, CRM or tasks",
+      "Email connected to WhatsApp alerts, CRM or tasks",
       "Automated follow-up sequences",
       "Inquiry and attachment processing",
     ],
@@ -77,7 +77,7 @@ const CAPABILITIES = [
     icon: Globe,
     title: "Website, social & ad leads",
     points: [
-      "Connects your existing site — no rebuild needed",
+      "Connects to your existing site without a rebuild",
       "Facebook and Instagram lead capture",
       "AI qualifies each inquiry instantly",
       "Confirmation by WhatsApp and email",
@@ -88,12 +88,12 @@ const CAPABILITIES = [
 
 export function Capabilities() {
   return (
-    <section id="automation" className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section id="automation" className="scroll-mt-20 border-y border-border bg-surface/30">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="What we can automate"
           title="Every channel your customers already use"
-          intro="Not one isolated chatbot on one platform — end-to-end workflows across the channels your business runs on."
+          intro="We connect complete workflows across the channels your business already uses."
         />
         <div className="mt-14 grid gap-5 md:grid-cols-2">
           {CAPABILITIES.map((cap, index) => (
@@ -142,17 +142,17 @@ const JOURNEY = [
 
 export function LeadJourney() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="Example workflow"
         title="From first message to booked appointment"
         intro="One trigger, one connected chain of actions. Less manual work, faster responses, fewer missed opportunities."
       />
-      <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <ol className="mt-10 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-5">
         {JOURNEY.map((step, index) => (
           <li
             key={step}
-            className="animate-rise rounded-xl border border-border bg-background/50 p-5"
+            className="animate-rise min-w-0 rounded-xl border border-border bg-background/50 p-4 sm:p-5"
             style={{ animationDelay: `${index * 0.05}s` }}
           >
             <span className="font-mono text-[11px] text-primary">
@@ -178,20 +178,20 @@ const BRIEF = [
 const RECOVERY = [
   { icon: PhoneMissed, title: "Missed-lead recovery", body: "A missed call triggers an instant message, an AI conversation, qualification, then a nudge to your sales team." },
   { icon: Star, title: "Feedback automation", body: "Happy customers are asked for a review; unhappy ones reach management before they reach the internet." },
-  { icon: CalendarCheck, title: "Scheduling", body: "AI checks slots, books, confirms, reminds and reschedules — ideal for clinics, salons, real estate and consultants." },
+  { icon: CalendarCheck, title: "Scheduling", body: "AI checks availability, books appointments, sends reminders, and handles rescheduling for your team." },
   { icon: FileStack, title: "Document processing", body: "Invoices, quotations, forms and CVs read, validated, stored and passed to the next step automatically." },
 ];
 
 export function Insights() {
   return (
     <section className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="Reporting & insights"
               title="Your business, summarised every morning"
-              intro="Instead of checking five systems, you get one clear brief — with the things that need attention flagged for you."
+               intro="Instead of checking five systems, you get one clear brief with the items that need your attention."
             />
             <div className="mt-10 space-y-4">
               {RECOVERY.map((item) => (
@@ -207,23 +207,23 @@ export function Insights() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="surface-panel animate-rise rounded-3xl p-8 md:p-10">
-              <div className="flex items-center gap-3">
+            <div className="surface-panel animate-rise rounded-2xl p-6 sm:p-8 md:p-10">
+              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3">
                 <Bell className="h-4 w-4 text-accent" />
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                  Daily business brief · sample
+                  Sample daily business brief
                 </p>
               </div>
               <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
                 {BRIEF.map((row) => (
-                  <div key={row.label} className="flex items-baseline justify-between gap-4 bg-background p-6">
+                   <div key={row.label} className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4 bg-background p-5 sm:p-6">
                     <dt className="text-sm text-muted-foreground">{row.label}</dt>
                     <dd className="font-display text-2xl font-semibold text-foreground">{row.value}</dd>
                   </div>
                 ))}
               </dl>
               <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
-                Delivered to WhatsApp, email or Slack — whichever your team actually reads.
+                Delivered through WhatsApp, email or Slack, based on how your team works.
               </p>
             </div>
           </div>
@@ -253,7 +253,7 @@ const HUMAN = {
 
 export function HumanLoop() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="Human in the loop"
         title={
@@ -327,8 +327,8 @@ const CLIENT_INPUTS = [
 
 export function Process() {
   return (
-    <section id="process" className="border-y border-border bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section id="process" className="scroll-mt-20 border-y border-border bg-surface/30">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="How we work"
           title="Eight steps from first conversation to live system"
@@ -360,7 +360,7 @@ export function Process() {
             </p>
             <p className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-background/50 p-5 text-sm">
               <BadgeCheck className="mt-0.5 h-4.5 w-4.5 shrink-0 text-accent" />
-              You stay the owner of your accounts and your data — always.
+               You remain the owner of your accounts and data at all times.
             </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-7">
@@ -424,14 +424,34 @@ function CellValue({ value }: { value: Cell }) {
 
 export function Packages() {
   return (
-    <section id="packages" className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <section id="packages" className="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="Packages"
         title="Start small, or automate the whole operation"
         intro="Three levels of engagement. Every package begins with a workflow assessment and an automation audit."
       />
 
-      <div className="mt-14 overflow-x-auto rounded-2xl border border-border">
+      <div className="mt-10 grid gap-4 md:hidden">
+        {TIERS.map((tier, tierIndex) => (
+          <article key={tier} className="rounded-2xl border border-border bg-surface/30 p-5">
+            <h3 className="font-display text-xl font-semibold">{tier}</h3>
+            <dl className="mt-5 divide-y divide-border">
+              {PACKAGE_ROWS.map((row) => {
+                const value = row.values[tierIndex] ?? false;
+                return (
+                  <div key={`${tier}-${row.feature}`} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3">
+                    <dt className="min-w-0 text-sm leading-5 text-muted-foreground">{row.feature}</dt>
+                    <dd className="shrink-0 text-right"><CellValue value={value} /></dd>
+                  </div>
+                );
+              })}
+            </dl>
+            <p className="mt-4 border-t border-border pt-4 text-sm font-semibold">Quoted per project</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-14 hidden overflow-x-auto rounded-2xl border border-border md:block">
         <table className="w-full min-w-[640px] border-collapse text-sm">
           <thead>
             <tr className="bg-surface/60">
