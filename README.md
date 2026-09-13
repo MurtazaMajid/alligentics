@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Alligentics AI Solutions
+
+Okay, so I want you to make a, um, company website. Its name is Alligentics, A-L-L-I-G-E-N-T-I-C-S. And it is a AI service providing, um, company. It provides AI services of automation, computer vision, machine learning, and all like other AI services. Okay? Agents, right, chatbots, et cetera. Uh, uh, yeah. So make a quick website, uh, for Alligentics
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://alligentics.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/12930c88-39b7-4c59-9fe6-5931db00c949).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
