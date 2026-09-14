@@ -33,7 +33,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import logoMark from "../assets/alligentics-mark.png.asset.json";
+import fullLogo from "../assets/alligentics-full-logo-dark.png.asset.json";
 import heroNetwork from "../assets/hero-network.jpg";
 import {
   Capabilities,
@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-body text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background font-body text-foreground">
       <Header />
       <main>
         <Hero />
@@ -94,7 +94,6 @@ function Index() {
         <LeadJourney />
         <Anatomy />
         <Insights />
-        <Methodology />
         <Process />
         <HumanLoop />
         <ValueMap />
@@ -124,13 +123,12 @@ function Header() {
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 sm:flex sm:gap-6 sm:px-6 sm:py-4">
         <a href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Alligentics home">
           <img
-            src={logoMark.url}
-            alt=""
-            width={55}
-            height={38}
-            className="h-8 w-auto shrink-0 sm:h-9"
+            src={fullLogo.url}
+            alt="Alligentics"
+            width={512}
+            height={132}
+            className="h-8 w-auto max-w-[148px] shrink-0 sm:h-9 sm:max-w-none"
           />
-          <span className="truncate font-display text-lg font-semibold text-foreground sm:text-xl">Alligentics</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((item) => (
@@ -178,17 +176,17 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-6 md:pb-32 md:pt-28">
         <span className="animate-rise inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-primary backdrop-blur sm:px-4 sm:text-[11px] sm:tracking-[0.18em]">
           <Sparkles className="h-3.5 w-3.5" />
-          Business-first · AI-enabled · Built for you
+          Your business apps, working together automatically
         </span>
 
-        <h1 className="animate-rise mt-7 max-w-[24ch] font-display text-[2.5rem] font-bold leading-[1.05] tracking-normal sm:text-[clamp(2.5rem,6.4vw,5rem)] sm:tracking-tight [animation-delay:0.08s]">
-          Your team shouldn't spend hours doing work{" "}
-          <span className="text-gradient">software can handle.</span>
+        <h1 className="animate-rise mt-7 max-w-[24ch] break-words font-display text-[2.35rem] font-bold leading-[1.1] tracking-normal sm:text-[clamp(2.5rem,6.4vw,5rem)] sm:leading-[1.05] sm:tracking-tight [animation-delay:0.08s]">
+          Automate the work.{" "}
+          <span className="text-gradient">Accelerate the business.</span>
         </h1>
 
         <p className="animate-rise mt-6 max-w-[56ch] text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-relaxed [animation-delay:0.16s]">
-          We identify repetitive work, then build intelligent systems that handle it
-          across the tools your team already uses.
+          We connect the apps your business already uses and add AI to handle repetitive,
+          predictable work while your team stays in control.
         </p>
 
         <div className="animate-rise mt-8 grid gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-4 [animation-delay:0.24s]">
@@ -210,7 +208,7 @@ function Hero() {
 
         <dl className="animate-rise mt-12 grid max-w-3xl grid-cols-2 gap-x-5 gap-y-7 border-t border-border pt-7 sm:mt-16 sm:gap-8 sm:pt-8 md:grid-cols-4 [animation-delay:0.32s]">
           {[
-            { value: "6-step", label: "Automation methodology" },
+            { value: "5-stage", label: "From discovery to launch" },
             { value: "End-to-end", label: "Workflow coverage" },
             { value: "Human + AI", label: "You stay in control" },
             { value: "Custom", label: "Never off-the-shelf" },
@@ -295,32 +293,32 @@ const PROBLEMS = [
   {
     icon: Database,
     title: "Manual data entry & CRM updates",
-    body: "Hours lost to repetitive input that never had to be typed by a person.",
+    body: "Customer details copied by hand between messages, spreadsheets, and your CRM.",
   },
   {
     icon: Network,
     title: "Cross-platform integration",
-    body: "Copy-paste between tools that were never taught to talk to each other.",
+    body: "Your business apps hold useful information, but they do not pass it along.",
   },
   {
     icon: MessageSquare,
     title: "Customer communication",
-    body: "Outreach and replies that stall the moment the team gets busy.",
+    body: "Customers wait while staff answer the same questions across different apps.",
   },
   {
     icon: UserCheck,
     title: "Lead management",
-    body: "Follow-ups and scheduling handled by memory instead of a system.",
+    body: "Slow replies and forgotten follow-ups let interested customers go cold.",
   },
   {
     icon: BarChart3,
     title: "Reporting",
-    body: "The same recurring report rebuilt by hand, week after week.",
+    body: "Weekly summaries are rebuilt by hand instead of appearing automatically.",
   },
   {
     icon: Eye,
     title: "System monitoring",
-    body: "Information silos that hide problems until they get expensive.",
+    body: "Teams check several systems before they can see what needs attention.",
   },
 ];
 
@@ -330,7 +328,7 @@ function Problem() {
       <SectionHeading
         eyebrow="The bottleneck"
         title="The problem isn't a lack of software."
-        intro="It's that your software doesn't work together intelligently. Every gap between two tools becomes a task somebody on your team has to carry."
+        intro="Your tools do not work together. Every gap between two apps becomes extra work for someone on your team."
       />
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {PROBLEMS.map((item, index) => (
@@ -369,13 +367,13 @@ const SERVICES = [
     number: "03",
     icon: TrendingUp,
     title: "Sales & lead automation",
-    body: "Capture, qualify, nurture: instant responses, synced CRM, scheduled follow-ups.",
+    body: "Capture and qualify new leads, update your CRM, and schedule the next follow-up automatically.",
   },
   {
     number: "04",
     icon: FileStack,
     title: "Data & document automation",
-    body: "Intelligent extraction, validation, and processing for the paperwork nobody wants.",
+    body: "Read invoices, forms, and CVs automatically instead of typing their details by hand.",
   },
   {
     number: "05",
@@ -530,46 +528,6 @@ function Anatomy() {
   );
 }
 
-const METHOD = [
-  { icon: Search, title: "Discover", body: "Understand how your operation actually runs." },
-  { icon: Target, title: "Identify", body: "Pinpoint the inefficiencies worth removing." },
-  { icon: Settings2, title: "Design", body: "Architect the optimised workflow." },
-  { icon: Cpu, title: "Build", body: "Develop and integrate across your stack." },
-  { icon: Rocket, title: "Deploy", body: "Test, launch, and hand over with confidence." },
-  { icon: Gauge, title: "Optimise", body: "Refine performance continuously." },
-];
-
-function Methodology() {
-  return (
-    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
-      <SectionHeading
-        eyebrow="Methodology"
-        title="Every business is different. Your automation should be too."
-      />
-      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-        {METHOD.map((step, index) => (
-          <div
-            key={step.title}
-            className="animate-rise group bg-background p-8 transition-colors hover:bg-surface/60"
-            style={{ animationDelay: `${index * 0.06}s` }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-primary transition-colors group-hover:text-accent">
-                <step.icon className="h-4.5 w-4.5" />
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
-                Step {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <h3 className="mt-5 font-display text-xl font-semibold">{step.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{step.body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 const DEPARTMENTS = [
   { icon: TrendingUp, title: "Sales", body: "Leads and CRM management" },
   { icon: BarChart3, title: "Marketing", body: "Automated reporting and content workflows" },
@@ -633,11 +591,11 @@ function WhyUs() {
         eyebrow="Why Alligentics"
         title={
           <>
-            You're not buying AI. You're buying{" "}
-            <span className="text-gradient">better workflows.</span>
+            Practical automation that creates{" "}
+            <span className="text-gradient">measurable improvements.</span>
           </>
         }
-        intro="Reduce manual work, process tasks faster, prevent errors, and build a stronger sales pipeline."
+        intro="Reply faster, miss fewer leads, reduce repetitive work, and keep customer information organised."
       />
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {REASONS.map((reason, index) => (
@@ -696,8 +654,8 @@ function Manifesto() {
       <div className="glow-orb absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2" aria-hidden="true" />
       <div className="relative mx-auto max-w-4xl px-6 py-28 text-center md:py-36">
         <p className="animate-rise font-display text-[clamp(1.6rem,3.4vw,2.75rem)] font-medium leading-[1.25] text-balance">
-          We don't automate for the sake of automation. We find the work that shouldn't
-          be manual anymore, and build systems to handle it{" "}
+          We find the work that no longer needs to be manual, then build a connected
+          system that handles it{" "}
           <span className="text-gradient">intelligently.</span>
         </p>
         <p className="mt-10 font-mono text-xs uppercase tracking-[0.4em] text-muted-foreground">
@@ -709,9 +667,9 @@ function Manifesto() {
 }
 
 const TEAM = [
-  { name: "Omer Bin Aziz", role: "Founder & CEO", initials: "OA" },
-  { name: "Murtaza Majid", role: "Co-founder & CTO", initials: "MM" },
-  { name: "Muhammad Hassan", role: "Co-founder & CRO", initials: "MH" },
+  { name: "Omer Bin Aziz", role: "Founder & CEO", initials: "OA", body: "Leads overall business strategy, operations, and business development." },
+  { name: "Murtaza Majid", role: "Co-founder & CTO", initials: "MM", body: "Leads automation architecture, AI integrations, and the technical build." },
+  { name: "Muhammad Hassan", role: "Co-founder & CRO", initials: "MH", body: "Leads sales, client outreach, and business development." },
 ];
 
 function Team() {
@@ -736,6 +694,7 @@ function Team() {
               <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                 {member.role}
               </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{member.body}</p>
             </article>
           ))}
         </div>
@@ -747,8 +706,8 @@ function Team() {
 const CONTACT_LINKS = [
   { icon: Mail, label: "alligenticsai@gmail.com", href: "mailto:alligenticsai@gmail.com" },
   { icon: Phone, label: "+92 329 247 4455", href: "tel:+923292474455" },
-  { icon: Instagram, label: "Instagram", href: "https://instagram.com/alligenticsai" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/alligenticsai" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/alligentics/" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/alligentics-ai/" },
 ];
 
 function Contact() {
@@ -816,12 +775,12 @@ function Footer() {
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
         <img
-          src={logoMark.url}
+          src={fullLogo.url}
           alt="Alligentics"
-          width={47}
-          height={32}
+          width={512}
+          height={132}
           loading="lazy"
-          className="h-8 w-auto"
+          className="h-9 w-auto max-w-[180px]"
         />
         <nav className="flex flex-wrap gap-7 text-sm text-muted-foreground">
           {NAV.map((item) => (
