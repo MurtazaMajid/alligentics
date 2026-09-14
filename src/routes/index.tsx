@@ -1009,12 +1009,12 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-surface/40">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
+      <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-[auto_minmax(0,1fr)_auto] lg:px-10 xl:px-12">
 
-        {/* LOGO + ALLIGENTICS TEXT */}
+        {/* Logo + Brand */}
         <a
           href="/"
-          className="flex items-center gap-3"
+          className="flex shrink-0 items-center gap-3 justify-self-start"
           aria-label="Alligentics home"
         >
           <img
@@ -1029,25 +1029,34 @@ function Footer() {
           </span>
         </a>
 
-        <nav className="flex flex-wrap gap-7 text-sm text-muted-foreground">
+        {/* Footer Navigation */}
+        <nav
+          className="flex w-full max-w-[760px] flex-wrap items-center justify-between gap-5 justify-self-center text-sm text-muted-foreground"
+          aria-label="Footer navigation"
+        >
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hover:text-foreground"
+              className="whitespace-nowrap transition-colors hover:text-foreground"
             >
               {item.label}
             </a>
           ))}
 
-          <a href="#contact" className="hover:text-foreground">
+          <a
+            href="#contact"
+            className="whitespace-nowrap transition-colors hover:text-foreground"
+          >
             Contact
           </a>
         </nav>
 
-        <p className="font-mono text-xs text-muted-foreground">
+        {/* Copyright */}
+        <p className="justify-self-start whitespace-nowrap font-mono text-xs text-muted-foreground md:justify-self-end">
           © {new Date().getFullYear()} Alligentics
         </p>
+
       </div>
     </footer>
   );
