@@ -33,7 +33,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import fullLogo from "../assets/alligentics-full-logo.png.asset.json";
+import fullLogo from "../assets/alligentics-full-logo-dark.png.asset.json";
 import heroNetwork from "../assets/hero-network.jpg";
 import {
   Capabilities,
