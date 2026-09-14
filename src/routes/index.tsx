@@ -706,8 +706,8 @@ function Team() {
 const CONTACT_LINKS = [
   { icon: Mail, label: "alligenticsai@gmail.com", href: "mailto:alligenticsai@gmail.com" },
   { icon: Phone, label: "+92 329 247 4455", href: "tel:+923292474455" },
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/alligentics/" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/alligentics-ai/" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/alligentics?stkn=MzJtZ2Q4cWJ1NzN4" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/alligentics-ai/posts/?feedView=all" },
 ];
 
 function Contact() {
