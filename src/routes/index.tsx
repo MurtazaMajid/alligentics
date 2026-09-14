@@ -111,43 +111,51 @@ function Index() {
 
 const NAV = [
   { href: "#services", label: "Services" },
-  { href: "#automation", label: "What we automate" },
+  { href: "#automation", label: "Solutions" },
   { href: "#process", label: "Process" },
-  { href: "#packages", label: "Packages" },
-  { href: "#team", label: "Team" },
+  { href: "#packages", label: "Pricing" },
+  { href: "#team", label: "About" },
 ];
 
 function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 py-3 sm:flex sm:gap-6 sm:px-6 sm:py-4">
-        <a href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label="Alligentics home">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-background/90 backdrop-blur-xl">
+      <div className="mx-auto grid h-[72px] w-full max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+        <a
+          href="/"
+          className="flex min-w-0 items-center justify-self-start"
+          aria-label="Alligentics home"
+        >
           <img
             src={fullLogo.url}
             alt="Alligentics"
             width={512}
             height={132}
-            className="h-8 w-auto max-w-[148px] shrink-0 sm:h-9 sm:max-w-none"
+            className="h-9 w-auto max-w-[170px] shrink-0 sm:h-10 sm:max-w-[190px]"
           />
         </a>
-        <nav className="hidden items-center gap-8 md:flex">
+
+        <nav
+          className="hidden items-center justify-center gap-7 lg:flex lg:gap-9"
+          aria-label="Primary navigation"
+        >
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="whitespace-nowrap text-[15px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
             >
               {item.label}
             </a>
           ))}
         </nav>
+
         <a
           href="#contact"
-          className="group inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] sm:gap-2 sm:px-5"
-          style={{ background: "var(--gradient-brand)" }}
+          className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 justify-self-end rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_rgba(34,197,211,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 sm:px-5"
         >
           <span className="sm:hidden">Book a call</span>
-          <span className="hidden sm:inline">Book a discovery call</span>
+          <span className="hidden sm:inline">Book a free call</span>
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
