@@ -121,28 +121,28 @@ const NAV = [
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-background/90 backdrop-blur-xl">
-      <div className="mx-auto grid h-[72px] w-full max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+      <div className="mx-auto grid h-[82px] w-full max-w-[1600px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-10 px-6 lg:px-10 xl:px-12">
 
-        {/* LOGO + ALLIGENTICS TEXT */}
+        {/* Logo + Brand */}
         <a
           href="/"
-          className="flex min-w-0 items-center gap-3 justify-self-start"
+          className="flex shrink-0 items-center gap-3"
           aria-label="Alligentics home"
         >
           <img
             src="/alligentics-logo.png"
             alt=""
-            className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11"
+            className="h-11 w-11 shrink-0 object-contain"
           />
 
-          <span className="font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+          <span className="font-display text-xl font-semibold tracking-tight text-foreground">
             Alligentics
           </span>
         </a>
 
-        {/* NAVIGATION WITH MORE SPACING */}
+        {/* Navigation */}
         <nav
-          className="hidden items-center justify-center gap-12 lg:flex xl:gap-16"
+          className="hidden w-full max-w-[760px] items-center justify-between justify-self-center lg:flex"
           aria-label="Primary navigation"
         >
           {NAV.map((item) => (
@@ -156,15 +156,16 @@ function Header() {
           ))}
         </nav>
 
+        {/* CTA */}
         <a
           href="#contact"
-          className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 justify-self-end rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_rgba(34,197,211,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 sm:px-5"
+          className="group inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_rgba(34,197,211,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110"
         >
-          <span className="sm:hidden">Book a call</span>
-          <span className="hidden sm:inline">Book a free call</span>
+          <span>Book a free call</span>
 
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
+
       </div>
     </header>
   );
