@@ -379,8 +379,6 @@ export function Process() {
 
 type Cell = true | false | string;
 
-const TIERS = ["Snap", "Surge", "Apex"] as const;
-
 const PACKAGE_ROWS: { feature: string; values: [Cell, Cell, Cell] }[] = [
   { feature: "Getting started", values: ["Quick workflow review", "Full review + plan", "Every department"] },
   { feature: "Customer chats", values: ["1 channel", "WhatsApp + email", "All channels + phone"] },

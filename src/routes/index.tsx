@@ -528,46 +528,6 @@ function Anatomy() {
   );
 }
 
-const METHOD = [
-  { icon: Search, title: "Discover", body: "Understand how your operation actually runs." },
-  { icon: Target, title: "Identify", body: "Pinpoint the inefficiencies worth removing." },
-  { icon: Settings2, title: "Design", body: "Architect the optimised workflow." },
-  { icon: Cpu, title: "Build", body: "Develop and integrate across your stack." },
-  { icon: Rocket, title: "Deploy", body: "Test, launch, and hand over with confidence." },
-  { icon: Gauge, title: "Optimise", body: "Refine performance continuously." },
-];
-
-function Methodology() {
-  return (
-    <section className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
-      <SectionHeading
-        eyebrow="Methodology"
-        title="Every business is different. Your automation should be too."
-      />
-      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-        {METHOD.map((step, index) => (
-          <div
-            key={step.title}
-            className="animate-rise group bg-background p-8 transition-colors hover:bg-surface/60"
-            style={{ animationDelay: `${index * 0.06}s` }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border text-primary transition-colors group-hover:text-accent">
-                <step.icon className="h-4.5 w-4.5" />
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
-                Step {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <h3 className="mt-5 font-display text-xl font-semibold">{step.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{step.body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 const DEPARTMENTS = [
   { icon: TrendingUp, title: "Sales", body: "Leads and CRM management" },
   { icon: BarChart3, title: "Marketing", body: "Automated reporting and content workflows" },
