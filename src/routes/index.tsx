@@ -83,6 +83,7 @@ function Index() {
   return (
     <div className="min-h-screen overflow-x-clip bg-background font-body text-foreground">
       <Header />
+
       <main>
         <Hero />
         <Marquee />
@@ -103,6 +104,7 @@ function Index() {
         <Team />
         <Contact />
       </main>
+
       <Footer />
     </div>
   );
@@ -120,20 +122,27 @@ function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto grid h-[72px] w-full max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-6 lg:grid-cols-[1fr_auto_1fr] lg:px-8">
+
+        {/* LOGO + ALLIGENTICS TEXT */}
         <a
           href="/"
-          className="flex min-w-0 items-center justify-self-start"
+          className="flex min-w-0 items-center gap-3 justify-self-start"
           aria-label="Alligentics home"
         >
           <img
             src="/alligentics-logo.png"
-            alt="Alligentics"
-            className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
+            alt=""
+            className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11"
           />
+
+          <span className="font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+            Alligentics
+          </span>
         </a>
 
+        {/* NAVIGATION WITH MORE SPACING */}
         <nav
-          className="hidden items-center justify-center gap-7 lg:flex lg:gap-9"
+          className="hidden items-center justify-center gap-12 lg:flex xl:gap-16"
           aria-label="Primary navigation"
         >
           {NAV.map((item) => (
@@ -153,6 +162,7 @@ function Header() {
         >
           <span className="sm:hidden">Book a call</span>
           <span className="hidden sm:inline">Book a free call</span>
+
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
@@ -232,6 +242,7 @@ function Hero() {
               <dt className="font-display text-2xl font-semibold text-foreground">
                 {stat.value}
               </dt>
+
               <dd className="mt-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                 {stat.label}
               </dd>
@@ -606,7 +617,11 @@ function Anatomy() {
 }
 
 const DEPARTMENTS = [
-  { icon: TrendingUp, title: "Sales", body: "Leads and CRM management" },
+  {
+    icon: TrendingUp,
+    title: "Sales",
+    body: "Leads and CRM management",
+  },
   {
     icon: BarChart3,
     title: "Marketing",
@@ -668,6 +683,7 @@ function ValueMap() {
                   <h3 className="font-display text-base font-semibold">
                     {dept.title}
                   </h3>
+
                   <p className="mt-1 text-sm text-muted-foreground">
                     {dept.body}
                   </p>
@@ -973,6 +989,7 @@ function Contact() {
               >
                 <span className="flex min-w-0 items-center gap-3 text-sm">
                   <Globe className="h-4.5 w-4.5 shrink-0 text-primary" />
+
                   <span className="min-w-0 break-all">
                     alligentics.lovable.app
                   </span>
@@ -992,12 +1009,24 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
-        <img
-          src="/alligentics-logo.png"
-          alt="Alligentics"
-          loading="lazy"
-          className="h-12 w-12 object-contain"
-        />
+
+        {/* LOGO + ALLIGENTICS TEXT */}
+        <a
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Alligentics home"
+        >
+          <img
+            src="/alligentics-logo.png"
+            alt=""
+            loading="lazy"
+            className="h-11 w-11 shrink-0 object-contain"
+          />
+
+          <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+            Alligentics
+          </span>
+        </a>
 
         <nav className="flex flex-wrap gap-7 text-sm text-muted-foreground">
           {NAV.map((item) => (
