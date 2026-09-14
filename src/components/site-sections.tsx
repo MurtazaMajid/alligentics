@@ -302,14 +302,11 @@ export function HumanLoop() {
 }
 
 const PROCESS = [
-  { title: "Business discovery", body: "Your model, customer journey, tools, channels and pain points." },
-  { title: "Automation audit", body: "What can be automated, what should stay human, what to connect." },
-  { title: "Workflow design", body: "The full flow mapped and approved before anything is built." },
-  { title: "Integration", body: "WhatsApp, email, website, CRM, calendar, databases, social." },
-  { title: "AI configuration", body: "Trained on your information, tone, rules and escalation points." },
-  { title: "Testing", body: "Normal chats, odd questions, errors, handoff, data transfer, alerts." },
-  { title: "Deployment", body: "Once you approve, it goes live inside your real workflow." },
-  { title: "Monitoring & optimisation", body: "We watch real usage and keep improving the workflows." },
+  { title: "Understand", body: "We learn how customers reach you, which tools you use, and where time is being lost." },
+  { title: "Identify", body: "We decide what is worth automating and what should stay with a person." },
+  { title: "Design & build", body: "We map the workflow, connect the right tools, and build it piece by piece." },
+  { title: "Test", body: "We test normal requests, unusual questions, handovers, and data transfers before launch." },
+  { title: "Launch & improve", body: "We put the system live, monitor real use, and improve it over time." },
 ];
 
 const CLIENT_INPUTS = [
@@ -331,9 +328,9 @@ export function Process() {
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:py-32">
         <SectionHeading
           eyebrow="How we work"
-          title="Eight steps from first conversation to live system"
+          title="A straightforward path from first conversation to launch"
         />
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-5">
           {PROCESS.map((step, index) => (
             <div
               key={step.title}
@@ -382,28 +379,23 @@ export function Process() {
 
 type Cell = true | false | string;
 
-const TIERS = ["Starter", "Growth", "Advanced"] as const;
+const TIERS = ["Snap", "Surge", "Apex"] as const;
 
 const PACKAGE_ROWS: { feature: string; values: [Cell, Cell, Cell] }[] = [
-  { feature: "Business workflow assessment", values: [true, true, true] },
-  { feature: "Automation audit", values: [true, true, true] },
-  { feature: "Automation workflows", values: ["1", "Multiple", "Multiple & interconnected"] },
-  { feature: "AI-powered customer interaction", values: [true, true, true] },
-  { feature: "WhatsApp automation", values: ["Basic", "Advanced", "Advanced"] },
-  { feature: "Email automation", values: ["Basic", true, true] },
-  { feature: "Lead capture", values: [true, true, true] },
-  { feature: "Lead qualification", values: [false, true, true] },
-  { feature: "Automated follow-ups", values: ["Basic", true, "Advanced"] },
-  { feature: "CRM / database integration", values: ["Basic", true, true] },
-  { feature: "Website / lead-form integration", values: [false, true, true] },
-  { feature: "Appointment automation", values: [false, true, true] },
-  { feature: "Social-media lead integration", values: [false, true, true] },
-  { feature: "AI phone automation", values: [false, false, true] },
-  { feature: "Document automation", values: [false, false, true] },
-  { feature: "Business reporting", values: ["Basic", true, "Advanced"] },
-  { feature: "Custom integrations", values: ["Limited", true, "Advanced"] },
+  { feature: "Getting started", values: ["Quick workflow review", "Full review + plan", "Every department"] },
+  { feature: "Customer chats", values: ["1 channel", "WhatsApp + email", "All channels + phone"] },
+  { feature: "Lead handling", values: ["Capture", "Qualify + website & ads", "Surge + documents"] },
+  { feature: "Social media", values: ["1 platform", "Instagram + Facebook", "All platforms connected"] },
+  { feature: "Tool connections", values: ["1 tool", "CRM + extra tools", "CRM + unlimited tools"] },
+  { feature: "Reports", values: ["Monthly summary", "Live dashboard", "Advanced dashboard"] },
   { feature: "Human handoff", values: [true, true, true] },
 ];
+
+const PACKAGE_DETAILS = [
+  { tier: "Snap", strapline: "Get your first workflow moving.", audience: "For solo founders and small teams automating one process for the first time.", price: "From PKR 15,000" },
+  { tier: "Surge", strapline: "Connect the whole funnel.", audience: "For growing teams whose leads and workflows do not yet connect.", price: "From PKR 30,000" },
+  { tier: "Apex", strapline: "Run the operation on AI.", audience: "For businesses ready to automate connected work across departments.", price: "Custom quote" },
+] as const;
 
 const PRICING_FACTORS = [
   "Complexity of the workflow",
@@ -427,26 +419,29 @@ export function Packages() {
     <section id="packages" className="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 sm:px-6 md:py-32">
       <SectionHeading
         eyebrow="Packages"
-        title="Start small, or automate the whole operation"
-        intro="Three levels of engagement. Every package begins with a workflow assessment and an automation audit."
+        title="Start with one workflow or connect the whole operation"
+        intro="Every project receives a clear, specific quote before work begins. Monthly plans are quoted separately."
       />
 
       <div className="mt-10 grid gap-4 md:hidden">
-        {TIERS.map((tier, tierIndex) => (
-          <article key={tier} className="rounded-2xl border border-border bg-surface/30 p-5">
-            <h3 className="font-display text-xl font-semibold">{tier}</h3>
+        {PACKAGE_DETAILS.map((detail, tierIndex) => (
+          <article key={detail.tier} className="rounded-2xl border border-border bg-surface/30 p-5">
+            <h3 className="font-display text-xl font-semibold">{detail.tier}</h3>
+            <p className="mt-1 text-sm font-medium text-primary">{detail.strapline}</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail.audience}</p>
             <dl className="mt-5 divide-y divide-border">
               {PACKAGE_ROWS.map((row) => {
                 const value = row.values[tierIndex] ?? false;
                 return (
-                  <div key={`${tier}-${row.feature}`} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3">
+                  <div key={`${detail.tier}-${row.feature}`} className="grid grid-cols-[minmax(0,1fr)_minmax(5rem,auto)] items-center gap-4 py-3">
                     <dt className="min-w-0 text-sm leading-5 text-muted-foreground">{row.feature}</dt>
                     <dd className="shrink-0 text-right"><CellValue value={value} /></dd>
                   </div>
                 );
               })}
             </dl>
-            <p className="mt-4 border-t border-border pt-4 text-sm font-semibold">Quoted per project</p>
+            <p className="mt-4 border-t border-border pt-4 text-sm font-semibold">{detail.price} one-time</p>
+            <p className="mt-1 text-xs text-muted-foreground">Monthly plan: custom quote</p>
           </article>
         ))}
       </div>
@@ -458,12 +453,13 @@ export function Packages() {
               <th className="px-6 py-5 text-left font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                 Feature
               </th>
-              {TIERS.map((tier) => (
+              {PACKAGE_DETAILS.map((detail) => (
                 <th
-                  key={tier}
+                  key={detail.tier}
                   className="px-6 py-5 text-center font-display text-base font-semibold"
                 >
-                  {tier}
+                  {detail.tier}
+                  <span className="mt-1 block font-body text-xs font-normal text-muted-foreground">{detail.strapline}</span>
                 </th>
               ))}
             </tr>
@@ -481,9 +477,10 @@ export function Packages() {
             ))}
             <tr className="border-t border-border bg-surface/40">
               <td className="px-6 py-5 text-left font-semibold">Pricing</td>
-              {TIERS.map((tier) => (
-                <td key={`price-${tier}`} className="px-6 py-5 text-center text-xs text-muted-foreground">
-                  Quoted per project
+               {PACKAGE_DETAILS.map((detail) => (
+                 <td key={`price-${detail.tier}`} className="px-6 py-5 text-center text-xs text-muted-foreground">
+                   <span className="block font-semibold text-foreground">{detail.price}</span>
+                   One-time · Monthly custom
                 </td>
               ))}
             </tr>
@@ -495,8 +492,8 @@ export function Packages() {
         <div className="lg:col-span-5">
           <h3 className="font-display text-2xl font-semibold tracking-tight">Pricing philosophy</h3>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            Automation shouldn't be priced by message count or feature checkboxes. We quote against
-            the work involved and the value created.
+            The starting price covers the initial build. Your exact quote depends on the workflow,
+            integrations, and support required.
           </p>
           <a
             href="#contact"
