@@ -127,6 +127,10 @@ function Header() {
         {/* Logo + Brand */}
         <a
           href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           className="flex min-w-0 items-center gap-2.5 sm:gap-3"
           aria-label="Alligentics home"
         >
@@ -1014,6 +1018,10 @@ function Footer() {
         {/* Logo + Brand */}
         <a
           href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           className="flex shrink-0 items-center gap-3 justify-self-start"
           aria-label="Alligentics home"
         >
