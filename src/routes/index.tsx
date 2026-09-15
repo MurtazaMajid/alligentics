@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 
 import heroNetwork from "../assets/hero-network.jpg";
+import { Button } from "../components/ui/button";
 import {
   Capabilities,
   HumanLoop,
@@ -121,21 +122,21 @@ const NAV = [
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-background/90 backdrop-blur-xl">
-      <div className="mx-auto grid h-[82px] w-full max-w-[1600px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-10 px-6 lg:px-10 xl:px-12">
+      <div className="mx-auto grid h-[72px] w-full max-w-[1600px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:h-[82px] sm:gap-6 sm:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-10 lg:px-10 xl:px-12">
 
         {/* Logo + Brand */}
         <a
           href="/"
-          className="flex shrink-0 items-center gap-3"
+          className="flex min-w-0 items-center gap-2.5 sm:gap-3"
           aria-label="Alligentics home"
         >
           <img
             src="/alligentics-logo.png"
             alt=""
-            className="h-11 w-11 shrink-0 object-contain"
+            className="h-9 w-9 shrink-0 object-contain sm:h-11 sm:w-11"
           />
 
-          <span className="font-display text-xl font-semibold tracking-tight text-foreground">
+          <span className="truncate font-display text-lg font-semibold tracking-normal text-foreground sm:text-xl">
             Alligentics
           </span>
         </a>
@@ -157,14 +158,13 @@ function Header() {
         </nav>
 
         {/* CTA */}
-        <a
-          href="#contact"
-          className="group inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-[0_8px_24px_rgba(34,197,211,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110"
-        >
-          <span>Book a free call</span>
-
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        <Button asChild className="group h-10 shrink-0 rounded-lg px-3 text-xs font-semibold shadow-lg sm:h-12 sm:rounded-xl sm:px-6 sm:text-sm">
+          <a href="#contact" aria-label="Book a free call">
+            <span className="sm:hidden">Book a call</span>
+            <span className="hidden sm:inline">Book a free call</span>
+            <ArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </Button>
 
       </div>
     </header>
