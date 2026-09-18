@@ -57,12 +57,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://alligentics.lovable.app/" },
+      { property: "og:url", content: "https://alligentics.com/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
     ],
-    links: [{ rel: "canonical", href: "https://alligentics.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://alligentics.com/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -71,7 +71,7 @@ export const Route = createFileRoute("/")({
           "@type": "Organization",
           name: "Alligentics",
           description: DESCRIPTION,
-          url: "https://alligentics.lovable.app/",
+          url: "https://alligentics.com/",
           email: "alligenticsai@gmail.com",
           telephone: "+923292474455",
         }),
