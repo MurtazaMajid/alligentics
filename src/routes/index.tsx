@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -30,6 +31,7 @@ import {
   UserCheck,
   Users,
   Workflow,
+  X,
   Zap,
 } from "lucide-react";
 
@@ -85,28 +87,57 @@ function Index() {
     <div className="min-h-screen overflow-x-clip bg-background font-body text-foreground">
       <Header />
 
-      <main>
-        <Hero />
-        <Marquee />
-        <Problem />
-        <Services />
-        <Difference />
-        <Capabilities />
-        <LeadJourney />
-        <Anatomy />
-        <Insights />
-        <Process />
-        <HumanLoop />
-        <ValueMap />
-        <Packages />
-        <WhyUs />
-        <Partners />
-        <Manifesto />
-        <Team />
-        <Contact />
+      {/*
+        Desktop: major content groups snap gently into view.
+        Mobile/tablet: all lg:* rules are inactive, so the site keeps its normal scroll.
+      */}
+      <main className="lg:h-[calc(100vh-82px)] lg:overflow-y-auto lg:scroll-smooth lg:snap-y lg:snap-proximity">
+        <div className="lg:snap-start">
+          <Hero />
+          <Marquee />
+        </div>
+
+        <div className="lg:snap-start">
+          <Problem />
+        </div>
+
+        <div className="lg:snap-start">
+          <Services />
+          <Difference />
+        </div>
+
+        <div className="lg:snap-start">
+          <Capabilities />
+          <LeadJourney />
+          <Anatomy />
+        </div>
+
+        <div className="lg:snap-start">
+          <Insights />
+          <Process />
+          <HumanLoop />
+        </div>
+
+        <div className="lg:snap-start">
+          <ValueMap />
+          <Packages />
+        </div>
+
+        <div className="lg:snap-start">
+          <WhyUs />
+          <Partners />
+          <Manifesto />
+        </div>
+
+        <div className="lg:snap-start">
+          <Team />
+          <Contact />
+          <Footer />
+        </div>
       </main>
 
-      <Footer />
+      <AlligenticsChat />
+      <WhatsAppButton />
     </div>
   );
 }
@@ -1007,6 +1038,199 @@ function Contact() {
         </div>
       </div>
     </section>
+  );
+}
+
+const WHATSAPP_NUMBER = "923292474455";
+const WHATSAPP_MESSAGE =
+  "Hi Alligentics, I'd like to know more about your automation services.";
+
+function WhatsAppButton() {
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    WHATSAPP_MESSAGE,
+  )}`;
+
+  return (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Alligentics on WhatsApp"
+      title="Chat on WhatsApp"
+      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-background sm:bottom-6 sm:right-6"
+    >
+      <MessageSquare className="h-6 w-6" />
+    </a>
+  );
+}
+
+type ChatMessage = {
+  role: "user" | "assistant";
+  content: string;
+};
+
+function AlligenticsChat() {
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      content:
+        "Hi! I'm the Alligentics assistant. Ask me about our AI automation services, workflows, integrations, or discovery sessions.",
+    },
+  ]);
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    WHATSAPP_MESSAGE,
+  )}`;
+
+  async function sendMessage() {
+    const text = input.trim();
+    if (!text || loading) return;
+
+    const updatedMessages: ChatMessage[] = [
+      ...messages,
+      { role: "user", content: text },
+    ];
+
+    setMessages(updatedMessages);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+
+      if (!response.ok) throw new Error("Chat request failed");
+
+      const data = (await response.json()) as { reply?: string };
+      const reply = data.reply?.trim();
+      if (!reply) throw new Error("Empty chat response");
+
+      setMessages([
+        ...updatedMessages,
+        { role: "assistant", content: reply },
+      ]);
+    } catch {
+      setMessages([
+        ...updatedMessages,
+        {
+          role: "assistant",
+          content:
+            "I can't answer that right now. You can continue directly with the Alligentics team on WhatsApp.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <>
+      {open ? (
+        <div className="fixed bottom-24 left-4 right-4 z-50 overflow-hidden rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur-xl sm:left-auto sm:right-24 sm:w-[390px]">
+          <div className="flex items-center justify-between border-b border-border bg-surface/60 px-5 py-4">
+            <div className="min-w-0">
+              <p className="font-display text-base font-semibold text-foreground">
+                Ask Alligentics
+              </p>
+              <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-primary">
+                AI assistant
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Close Alligentics assistant"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          <div
+            className="h-[min(390px,52vh)] space-y-3 overflow-y-auto p-4"
+            aria-live="polite"
+          >
+            {messages.map((message, index) => (
+              <div
+                key={`${message.role}-${index}`}
+                className={`max-w-[86%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+                  message.role === "user"
+                    ? "ml-auto rounded-br-md bg-primary text-primary-foreground"
+                    : "mr-auto rounded-bl-md border border-border bg-surface text-foreground"
+                }`}
+              >
+                {message.content}
+              </div>
+            ))}
+
+            {loading ? (
+              <div className="mr-auto max-w-[86%] rounded-2xl rounded-bl-md border border-border bg-surface px-4 py-3 text-sm text-muted-foreground">
+                Thinking...
+              </div>
+            ) : null}
+          </div>
+
+          <div className="border-t border-border bg-surface/30 p-3">
+            <div className="flex items-end gap-2">
+              <input
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    void sendMessage();
+                  }
+                }}
+                placeholder="Ask about Alligentics..."
+                aria-label="Message Alligentics assistant"
+                className="min-h-11 min-w-0 flex-1 rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
+              />
+
+              <button
+                type="button"
+                onClick={() => void sendMessage()}
+                disabled={loading || !input.trim()}
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Send message"
+              >
+                <ArrowUpRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 rounded-lg py-1.5 text-xs font-medium text-primary transition-colors hover:text-accent"
+            >
+              <MessageSquare className="h-3.5 w-3.5" />
+              Continue on WhatsApp
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        </div>
+      ) : null}
+
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        aria-expanded={open}
+        aria-label={open ? "Close Alligentics assistant" : "Open Alligentics assistant"}
+        className="fixed bottom-5 right-[5.25rem] z-50 inline-flex h-14 items-center justify-center gap-2 rounded-full border border-border bg-background/95 px-4 text-sm font-semibold text-foreground shadow-xl backdrop-blur-xl transition-transform duration-200 hover:scale-[1.03] sm:bottom-6 sm:right-24 sm:px-5"
+      >
+        {open ? <X className="h-5 w-5" /> : <Bot className="h-5 w-5 text-primary" />}
+        <span className="hidden sm:inline">
+          {open ? "Close" : "Ask Alligentics"}
+        </span>
+      </button>
+    </>
   );
 }
 
