@@ -996,7 +996,7 @@ function Contact() {
                   <Globe className="h-4.5 w-4.5 shrink-0 text-primary" />
 
                   <span className="min-w-0 break-all">
-                    https://alligentics.com/
+                    https://alligentics.com
                   </span>
                 </span>
 
