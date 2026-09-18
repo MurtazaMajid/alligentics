@@ -989,7 +989,7 @@ function Contact() {
 
             <li>
               <a
-                href="https://alligentics.lovable.app"
+                href="https://alligentics.com/"
                 className="group grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-xl border border-border bg-background/50 px-4 py-4 transition-colors hover:bg-surface sm:px-5"
               >
                 <span className="flex min-w-0 items-center gap-3 text-sm">
