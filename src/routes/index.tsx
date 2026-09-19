@@ -88,48 +88,48 @@ function Index() {
       <Header />
 
       {/*
-        Desktop: major content groups snap gently into view.
-        Mobile/tablet: all lg:* rules are inactive, so the site keeps its normal scroll.
+        Desktop: six major content pages snap gently into view.
+        Mobile/tablet: all lg:* rules are inactive, so normal continuous scrolling is preserved.
       */}
       <main className="lg:h-[calc(100vh-82px)] lg:overflow-y-auto lg:scroll-smooth lg:snap-y lg:snap-proximity">
-        <div className="lg:snap-start">
+        {/* Page 1 — Introduction */}
+        <div className="lg:min-h-[calc(100vh-82px)] lg:snap-start">
           <Hero />
           <Marquee />
         </div>
 
+        {/* Page 2 — Problem + solution */}
         <div className="lg:snap-start">
           <Problem />
-        </div>
-
-        <div className="lg:snap-start">
           <Services />
           <Difference />
         </div>
 
+        {/* Page 3 — What we automate */}
         <div className="lg:snap-start">
           <Capabilities />
           <LeadJourney />
           <Anatomy />
         </div>
 
+        {/* Page 4 — How it works */}
         <div className="lg:snap-start">
           <Insights />
           <Process />
           <HumanLoop />
         </div>
 
+        {/* Page 5 — Value, pricing + trust */}
         <div className="lg:snap-start">
           <ValueMap />
           <Packages />
-        </div>
-
-        <div className="lg:snap-start">
           <WhyUs />
           <Partners />
-          <Manifesto />
         </div>
 
+        {/* Page 6 — About + contact */}
         <div className="lg:snap-start">
+          <Manifesto />
           <Team />
           <Contact />
           <Footer />
