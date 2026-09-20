@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -82,58 +82,147 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-function Index() {
-  return (
-    <div className="min-h-screen overflow-x-clip bg-background font-body text-foreground">
-      <Header />
+const DESKTOP_QUERY = "(min-width: 1024px)";
 
-      {/*
-        Desktop: six major content pages snap gently into view.
-        Mobile/tablet: all lg:* rules are inactive, so normal continuous scrolling is preserved.
-      */}
-      <main className="lg:h-[calc(100vh-82px)] lg:overflow-y-auto lg:scroll-smooth lg:snap-y lg:snap-proximity">
+// `page` = which desktop page the link opens
+const NAV = [
+  { href: "#services", label: "Services", page: 1 },
+  { href: "#automation", label: "Solutions", page: 2 },
+  { href: "#process", label: "Process", page: 3 },
+  { href: "#packages", label: "Pricing", page: 4 },
+  { href: "#team", label: "About", page: 5 },
+];
+
+function Page({
+  index,
+  active,
+  className = "",
+  children,
+}: {
+  index: number;
+  active: number;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  // Desktop: only the active page shows. Mobile: every page shows (lg:hidden is inactive).
+  return (
+    <div
+      data-page={index}
+      className={`${active === index ? "" : "lg:hidden"} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Index() {
+  const [page, setPage] = useState(0);
+  const mainRef = useRef<HTMLElement>(null);
+
+  const isDesktop = () => window.matchMedia(DESKTOP_QUERY).matches;
+
+  function openPage(index: number, targetId?: string) {
+    setPage(index);
+    requestAnimationFrame(() => {
+      const main = mainRef.current;
+      if (!main) return;
+      const target = targetId ? document.getElementById(targetId) : null;
+      const top = target
+        ? target.getBoundingClientRect().top -
+          main.getBoundingClientRect().top +
+          main.scrollTop
+        : 0;
+      main.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+    });
+  }
+
+  function goHome() {
+    if (isDesktop()) openPage(0);
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Handles every in-page link on desktop. On mobile it does nothing,
+  // so normal anchor scrolling still works.
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (!isDesktop()) return;
+
+    const anchor = (e.target as HTMLElement).closest("a");
+    if (!anchor) return;
+
+    // Nav links: open the page at its top
+    const goPage = anchor.getAttribute("data-go-page");
+    if (goPage !== null) {
+      e.preventDefault();
+      openPage(Number(goPage));
+      return;
+    }
+
+    // Any other "#section" link: open the page containing it, scroll to it
+    const href = anchor.getAttribute("href");
+    if (!href || !href.startsWith("#") || href.length < 2) return;
+    const id = href.slice(1);
+    const pageEl = document.getElementById(id)?.closest("[data-page]");
+    if (!pageEl) return;
+    e.preventDefault();
+    openPage(Number(pageEl.getAttribute("data-page")), id);
+  }
+
+  return (
+    <div
+      className="min-h-screen overflow-x-clip bg-background font-body text-foreground"
+      onClick={handleClick}
+    >
+      <Header activePage={page} onHome={goHome} />
+
+      {/* Desktop: one page at a time. Mobile/tablet: normal continuous scroll. */}
+      <main
+        ref={mainRef}
+        className="lg:h-[calc(100vh-82px)] lg:overflow-y-auto"
+      >
         {/* Page 1 — Introduction */}
-        <div className="lg:min-h-[calc(100vh-82px)] lg:snap-start">
+        <Page index={0} active={page} className="lg:min-h-[calc(100vh-82px)]">
           <Hero />
           <Marquee />
-        </div>
+        </Page>
 
         {/* Page 2 — Problem + solution */}
-        <div className="lg:snap-start">
+        <Page index={1} active={page}>
           <Problem />
           <Services />
           <Difference />
-        </div>
+        </Page>
 
         {/* Page 3 — What we automate */}
-        <div className="lg:snap-start">
+        <Page index={2} active={page}>
           <Capabilities />
           <LeadJourney />
           <Anatomy />
-        </div>
+        </Page>
 
         {/* Page 4 — How it works */}
-        <div className="lg:snap-start">
+        <Page index={3} active={page}>
           <Insights />
           <Process />
           <HumanLoop />
-        </div>
+        </Page>
 
         {/* Page 5 — Value, pricing + trust */}
-        <div className="lg:snap-start">
+        <Page index={4} active={page}>
           <ValueMap />
           <Packages />
           <WhyUs />
           <Partners />
-        </div>
+        </Page>
 
         {/* Page 6 — About + contact */}
-        <div className="lg:snap-start">
+        <Page index={5} active={page}>
           <Manifesto />
           <Team />
           <Contact />
-          <Footer />
-        </div>
+          <Footer onHome={goHome} />
+        </Page>
       </main>
 
       <AlligenticsChat />
@@ -142,15 +231,13 @@ function Index() {
   );
 }
 
-const NAV = [
-  { href: "#services", label: "Services" },
-  { href: "#automation", label: "Solutions" },
-  { href: "#process", label: "Process" },
-  { href: "#packages", label: "Pricing" },
-  { href: "#team", label: "About" },
-];
-
-function Header() {
+function Header({
+  activePage,
+  onHome,
+}: {
+  activePage: number;
+  onHome: () => void;
+}) {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto grid h-[72px] w-full max-w-[1600px] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:h-[82px] sm:gap-6 sm:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-10 lg:px-10 xl:px-12">
@@ -160,7 +247,7 @@ function Header() {
           href="/"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            onHome();
           }}
           className="flex min-w-0 items-center gap-2.5 sm:gap-3"
           aria-label="Alligentics home"
@@ -185,7 +272,13 @@ function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="whitespace-nowrap text-[15px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
+              data-go-page={item.page}
+              aria-current={activePage === item.page ? "page" : undefined}
+              className={`whitespace-nowrap text-[15px] font-medium transition-colors duration-200 hover:text-foreground ${
+                activePage === item.page
+                  ? "text-foreground"
+                  : "text-muted-foreground"
+              }`}
             >
               {item.label}
             </a>
@@ -1247,7 +1340,7 @@ function AlligenticsChat() {
   );
 }
 
-function Footer() {
+function Footer({ onHome }: { onHome: () => void }) {
   return (
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-8 px-6 py-10 md:grid-cols-[auto_minmax(0,1fr)_auto] lg:px-10 xl:px-12">
@@ -1257,7 +1350,7 @@ function Footer() {
           href="/"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            onHome();
           }}
           className="flex shrink-0 items-center gap-3 justify-self-start"
           aria-label="Alligentics home"
@@ -1283,6 +1376,7 @@ function Footer() {
             <a
               key={item.href}
               href={item.href}
+              data-go-page={item.page}
               className="whitespace-nowrap transition-colors hover:text-foreground"
             >
               {item.label}
