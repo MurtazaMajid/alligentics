@@ -99,6 +99,18 @@
       padding-inline: 2rem;
     }
   }
+  /* Large monitors: use the extra width instead of leaving wide empty margins. */
+  @media (min-width: 1536px) {
+    .x-container {
+      max-width: 90rem;
+      padding-inline: 3rem;
+    }
+  }
+  @media (min-width: 1800px) {
+    .x-container {
+      max-width: 104rem;
+    }
+  }
 
   .x-section {
     position: relative;
@@ -132,6 +144,16 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     text-wrap: balance;
+  }
+  @media (min-width: 1536px) {
+    .x-h1 {
+      font-size: 4.1rem;
+    }
+  }
+  @media (min-width: 1800px) {
+    .x-h1 {
+      font-size: 4.6rem;
+    }
   }
   .x-h2 {
     font-family: var(--font-display);
