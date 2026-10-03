@@ -1,0 +1,17 @@
+{
+  "public": [
+    "/",
+    "/capabilities",
+    "/solutions",
+    "/work",
+    "/insights",
+    "/about",
+    "/contact"
+  ],
+  "protected": [
+    "/app",
+    "/dashboard",
+    "/admin",
+    "/client-portal"
+  ]
+}
