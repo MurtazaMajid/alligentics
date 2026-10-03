@@ -268,7 +268,32 @@ export default {
 
     if (url.pathname === "/api/status") {
       // Diagnostics only: reports whether the secrets are visible to this deployment (never their values).
-      return json({ chat: Boolean(env.GROQ_API_KEY), contact: Boolean(env.CONTACT_WEBHOOK_URL) });
+      const status: Record<string, unknown> = {
+        chat: Boolean(env.GROQ_API_KEY),
+        contact: Boolean(env.CONTACT_WEBHOOK_URL),
+      };
+      // /api/status?test=1 makes one tiny Groq call so a wrong or expired key shows up as a status code.
+      if (url.searchParams.get("test") === "1" && env.GROQ_API_KEY) {
+        try {
+          const probe = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${env.GROQ_API_KEY}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              model: "llama-3.3-70b-versatile",
+              messages: [{ role: "user", content: "hi" }],
+              max_completion_tokens: 1,
+            }),
+          });
+          status["groqStatus"] = probe.status;
+          status["groqOk"] = probe.ok;
+        } catch {
+          status["groqStatus"] = "network error";
+        }
+      }
+      return json(status);
     }
     if (url.pathname === "/api/chat") {
       return handleChat(request, env);
