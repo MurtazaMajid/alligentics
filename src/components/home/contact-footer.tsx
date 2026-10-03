@@ -277,7 +277,7 @@ export function Footer() {
                 src="/alligentics-logo.png"
                 alt=""
                 loading="lazy"
-                className="h-10 w-10 object-contain"
+                className="x-logo h-11 w-11 object-contain"
               />
               <span className="font-display text-xl font-semibold">Alligentics</span>
             </a>

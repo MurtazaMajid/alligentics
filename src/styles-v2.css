@@ -1739,3 +1739,9 @@
     }
   }
 }
+
+/* Brand mark: a soft glow lifts the deep-navy half of the logo off the dark background. */
+.x-logo {
+  filter: drop-shadow(0 0 10px oklch(0.75 0.14 215 / 0.45))
+    drop-shadow(0 0 2px oklch(0.95 0.03 230 / 0.35));
+}

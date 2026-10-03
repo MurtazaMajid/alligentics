@@ -82,10 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#0B0D12" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Alligentics" },
-      { property: "og:image", content: "https://alligentics.com/alligentics-logo.png" },
+      { property: "og:image", content: "https://alligentics.com/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@alligentics" },
-      { name: "twitter:image", content: "https://alligentics.com/alligentics-logo.png" },
+      { name: "twitter:image", content: "https://alligentics.com/og-image.png" },
     ],
     links: [
       {
@@ -96,6 +96,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "icon",
         type: "image/png",
         href: "/favicon.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/apple-touch-icon.png",
       },
       {
         rel: "preconnect",

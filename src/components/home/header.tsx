@@ -56,7 +56,7 @@ export function Header() {
           <img
             src="/alligentics-logo.png"
             alt=""
-            className="h-9 w-9 object-contain sm:h-10 sm:w-10"
+            className="x-logo h-10 w-10 object-contain sm:h-11 sm:w-11"
           />
           <span className="font-display text-xl font-semibold tracking-tight">Alligentics</span>
         </a>
