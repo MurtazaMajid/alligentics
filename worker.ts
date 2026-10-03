@@ -1,5 +1,6 @@
 interface Env {
   GROQ_API_KEY: string;
+  CONTACT_WEBHOOK_URL?: string;
   ASSETS: {
     fetch(request: Request): Promise<Response>;
   };
@@ -216,12 +217,68 @@ async function handleChat(request: Request, env: Env): Promise<Response> {
   }
 }
 
+
+const clean = (value: unknown, max: number) =>
+  typeof value === "string" ? value.trim().slice(0, max) : "";
+
+/** Forwards website enquiries to a webhook (n8n, Make, Zapier...). 503 when unset so the form falls back to email. */
+async function handleContact(request: Request, env: Env): Promise<Response> {
+  if (!env.CONTACT_WEBHOOK_URL) {
+    return json({ error: "Contact delivery is not configured." }, 503);
+  }
+  let body: Record<string, unknown>;
+  try {
+    body = (await request.json()) as Record<string, unknown>;
+  } catch {
+    return json({ error: "Invalid request." }, 400);
+  }
+  const lead = {
+    name: clean(body.name, 120),
+    email: clean(body.email, 200),
+    company: clean(body.company, 160),
+    challenge: clean(body.challenge, 4000),
+    timeline: clean(body.timeline, 60),
+    budget: clean(body.budget, 60),
+    source: "alligentics.com",
+    submittedAt: new Date().toISOString(),
+  };
+  if (
+    !lead.name ||
+    !lead.company ||
+    !lead.challenge ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)
+  ) {
+    return json({ error: "Please complete the required fields." }, 400);
+  }
+  try {
+    const upstream = await fetch(env.CONTACT_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!upstream.ok) {
+      console.error(`Contact webhook responded with ${upstream.status}`);
+      return json({ error: "Could not deliver your message." }, 502);
+    }
+    return json({ ok: true });
+  } catch (error) {
+    console.error("Contact webhook failed:", error);
+    return json({ error: "Could not deliver your message." }, 502);
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/chat") {
       return handleChat(request, env);
+    }
+    if (url.pathname === "/api/contact") {
+      return request.method === "POST"
+        ? handleContact(request, env)
+        : json({ error: "Method not allowed." }, 405);
     }
 
     return env.ASSETS.fetch(request);
