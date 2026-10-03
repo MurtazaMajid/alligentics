@@ -139,7 +139,7 @@ async function handleChat(request: Request, env: Env): Promise<Response> {
           !!message &&
           (message.role === "user" || message.role === "assistant") &&
           typeof message.content === "string" &&
-          message.content.trim().length > 0
+          message.content.trim().length > 0,
       )
       .slice(-10)
       .map((message) => ({
@@ -151,41 +151,36 @@ async function handleChat(request: Request, env: Env): Promise<Response> {
       return json({ error: "No valid messages provided." }, 400);
     }
 
-    const groqResponse = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${env.GROQ_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: [
-            {
-              role: "system",
-              content: SYSTEM_PROMPT,
-            },
-            ...messages,
-          ],
-          temperature: 0.3,
-          max_completion_tokens: 350,
-        }),
-      }
-    );
+    const groqResponse = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: [
+          {
+            role: "system",
+            content: SYSTEM_PROMPT,
+          },
+          ...messages,
+        ],
+        temperature: 0.3,
+        max_completion_tokens: 350,
+      }),
+    });
 
     if (!groqResponse.ok) {
       const errorText = await groqResponse.text();
 
-      console.error(
-        `Groq API error ${groqResponse.status}: ${errorText}`
-      );
+      console.error(`Groq API error ${groqResponse.status}: ${errorText}`);
 
       return json(
         {
           error: "AI service unavailable.",
         },
-        502
+        502,
       );
     }
 
@@ -212,11 +207,10 @@ async function handleChat(request: Request, env: Env): Promise<Response> {
       {
         error: "Unable to process your message.",
       },
-      500
+      500,
     );
   }
 }
-
 
 const clean = (value: unknown, max: number) =>
   typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -272,6 +266,10 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
+    if (url.pathname === "/api/status") {
+      // Diagnostics only: reports whether the secrets are visible to this deployment (never their values).
+      return json({ chat: Boolean(env.GROQ_API_KEY), contact: Boolean(env.CONTACT_WEBHOOK_URL) });
+    }
     if (url.pathname === "/api/chat") {
       return handleChat(request, env);
     }
@@ -284,4 +282,3 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
-

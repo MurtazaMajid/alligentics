@@ -99,16 +99,11 @@
       padding-inline: 2rem;
     }
   }
-  /* Large monitors: use the extra width instead of leaving wide empty margins. */
-  @media (min-width: 1536px) {
+  /* Large monitors: run close to the screen edges instead of leaving wide empty margins. */
+  @media (min-width: 1280px) {
     .x-container {
-      max-width: 90rem;
-      padding-inline: 3rem;
-    }
-  }
-  @media (min-width: 1800px) {
-    .x-container {
-      max-width: 104rem;
+      max-width: 120rem;
+      padding-inline: clamp(2rem, 3.2vw, 4.5rem);
     }
   }
 
