@@ -214,9 +214,9 @@ export function Contact() {
                     <span>Budget (optional)</span>
                     <select name="budget" defaultValue="">
                       <option value="">Prefer to discuss</option>
-                      <option>Under PKR 30,000</option>
-                      <option>PKR 30,000–100,000</option>
-                      <option>PKR 100,000+</option>
+                      <option>Under $500</option>
+                      <option>$500–$2,000</option>
+                      <option>$2,000+</option>
                     </select>
                   </label>
 
