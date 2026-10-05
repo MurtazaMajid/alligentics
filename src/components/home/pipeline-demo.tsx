@@ -68,9 +68,9 @@ const CONVERSATIONS: Record<ChannelId, readonly Message[]> = {
     {
       at: 3,
       from: "customer",
-      text: "Daniyal. We run a distribution business and want to automate follow-ups.",
+      text: "Daniel Brooks. We run a distribution business and want to automate follow-ups.",
     },
-    { at: 4, from: "ai", text: "Thanks, Daniyal. Would Thursday at 11 AM suit you?" },
+    { at: 4, from: "ai", text: "Thanks, Daniel. Would Thursday at 11 AM suit you?" },
     { at: 6, from: "customer", text: "Thursday works." },
     { at: 7, from: "ai", text: "Booked! A confirmation is on its way to you." },
   ],
@@ -80,9 +80,9 @@ const CONVERSATIONS: Record<ChannelId, readonly Message[]> = {
     {
       at: 3,
       from: "customer",
-      text: "Daniyal. Distribution business, we want automated order follow-ups.",
+      text: "Daniel Brooks. Distribution business, we want automated order follow-ups.",
     },
-    { at: 4, from: "ai", text: "Great, Daniyal. Does Thursday 11:00 work for a call?" },
+    { at: 4, from: "ai", text: "Great, Daniel. Does Thursday 11:00 work for a call?" },
     { at: 6, from: "customer", text: "Thursday is perfect." },
     {
       at: 7,
@@ -104,12 +104,12 @@ const CONVERSATIONS: Record<ChannelId, readonly Message[]> = {
     {
       at: 3,
       from: "customer",
-      text: "I'm Daniyal. We run a distribution business and need order follow-ups automated.",
+      text: "I'm Daniel Brooks. We run a distribution business and need order follow-ups automated.",
     },
     {
       at: 4,
       from: "ai",
-      text: "Thanks, Daniyal. We can offer Thursday at 11:00. Shall I reserve it?",
+      text: "Thanks, Daniel. We can offer Thursday at 11:00. Shall I reserve it?",
     },
     { at: 6, from: "customer", text: "Yes, please reserve Thursday." },
     { at: 7, from: "ai", text: "Reserved. A calendar invitation has been sent to your inbox." },
@@ -239,7 +239,7 @@ export function PipelineDemo() {
               <dl className="x-crm-grid">
                 {[
                   { label: "Source", value: SOURCE_LABEL[channel], on: step >= 1 },
-                  { label: "Contact", value: "Daniyal", on: step >= 3 },
+                  { label: "Contact", value: "Daniel Brooks", on: step >= 3 },
                   { label: "Request", value: "Automate order follow-ups", on: step >= 3 },
                   { label: "Owner", value: "Sales team", on: step >= 5 },
                   {

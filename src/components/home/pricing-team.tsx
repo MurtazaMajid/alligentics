@@ -26,26 +26,29 @@ const ROWS: readonly Row[] = [
 const TIERS = [
   {
     name: "Snap",
+    label: "Starter",
     line: "Get your first workflow moving.",
     audience: "For solo founders and small teams automating one process for the first time.",
-    price: "PKR 15,000",
-    prefix: "From",
+    setup: "$199",
+    monthly: "$99",
     featured: false,
   },
   {
     name: "Surge",
+    label: "Growth",
     line: "Connect the whole funnel.",
     audience: "For growing teams whose leads and workflows do not yet connect.",
-    price: "PKR 30,000",
-    prefix: "From",
+    setup: "$499",
+    monthly: "$199",
     featured: true,
   },
   {
     name: "Apex",
+    label: "Custom",
     line: "Run the operation on AI.",
     audience: "For businesses ready to automate connected work across departments.",
-    price: "Custom quote",
-    prefix: "",
+    setup: "",
+    monthly: "",
     featured: false,
   },
 ] as const;
@@ -75,7 +78,7 @@ export function Pricing() {
                 <span className="x-grad-text">connect the whole operation.</span>
               </>
             }
-            intro="Every project receives a clear, specific quote before work begins. Starting points are shown in PKR; international projects can be quoted in an applicable currency."
+            intro="Every project receives a clear, specific quote before work begins. Prices are shown in US dollars; other currencies can be quoted on request."
           />
         </Reveal>
 
@@ -86,25 +89,39 @@ export function Pricing() {
                 className={`x-price h-full ${tier.featured ? "x-card--accent x-price--featured" : ""}`}
               >
                 {tier.featured ? <span className="x-price__badge">Most connected</span> : null}
-                <h3 className="font-display text-2xl font-semibold">{tier.name}</h3>
+                <p className="font-mono text-xs uppercase tracking-[0.18em] text-[color:var(--electric)]">
+                  {tier.label}
+                </p>
+                <h3 className="mt-2 font-display text-2xl font-semibold">{tier.name}</h3>
                 <p className="mt-1 text-[color:var(--foreground)]/90">{tier.line}</p>
                 <p className="mt-3 text-sm leading-relaxed text-[color:var(--muted-foreground)]">
                   {tier.audience}
                 </p>
 
-                <p className="mt-7 flex items-baseline gap-2">
-                  {tier.prefix ? (
-                    <span className="text-sm text-[color:var(--muted-foreground)]">
-                      {tier.prefix}
-                    </span>
-                  ) : null}
-                  <span className="font-display text-4xl font-semibold tracking-tight">
-                    {tier.price}
-                  </span>
-                </p>
-                <p className="mt-1 text-xs text-[color:var(--muted-foreground)]">
-                  One-time build · monthly plan quoted separately
-                </p>
+                {tier.setup ? (
+                  <>
+                    <p className="mt-7 flex items-baseline gap-2">
+                      <span className="font-display text-4xl font-semibold tracking-tight">
+                        {tier.setup}
+                      </span>
+                      <span className="text-sm text-[color:var(--muted-foreground)]">
+                        one-time setup
+                      </span>
+                    </p>
+                    <p className="mt-1 text-sm text-[color:var(--foreground)]/90">
+                      then <span className="font-semibold">{tier.monthly}</span> / month
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="mt-7 font-display text-4xl font-semibold tracking-tight">
+                      Custom quote
+                    </p>
+                    <p className="mt-1 text-sm text-[color:var(--muted-foreground)]">
+                      Scoped to your operation
+                    </p>
+                  </>
+                )}
 
                 <a
                   href="#contact"
@@ -148,7 +165,7 @@ export function Pricing() {
                   Pricing philosophy
                 </p>
                 <h3 className="mt-2 font-display text-xl font-semibold">
-                  The starting price covers the initial build. The work shapes the final quote.
+                  Setup is a one-time build fee. The scope shapes the final quote.
                 </h3>
               </div>
             </div>
@@ -251,7 +268,7 @@ const FAQS = [
   },
   {
     q: "How is pricing worked out?",
-    a: "Snap starts from PKR 15,000, Surge from PKR 30,000, and Apex is a custom quote. The final price depends on workflow complexity, integrations, AI requirements, delivery effort and the support you need, and you receive a clear quote before any work begins.",
+    a: "Snap (Starter) is $199 for setup plus $99 a month, and Surge (Growth) is $499 for setup plus $199 a month. Apex is a custom quote for businesses automating across departments. The final price depends on workflow complexity, integrations, AI requirements, delivery effort and the support you need, and you receive a clear quote before any work begins.",
   },
   {
     q: "How do we test it before it goes live?",

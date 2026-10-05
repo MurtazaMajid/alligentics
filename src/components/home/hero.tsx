@@ -25,8 +25,8 @@ import { useInView, usePrefersReducedMotion, useTimedLoop } from "../../hooks/us
 const MESSAGES = [
   { from: "caller", text: "Hi, I'd like a quote and a visit sometime next week." },
   { from: "ai", text: "Of course! May I have your name and what you're looking for?" },
-  { from: "caller", text: "Sara Ahmed. A full-office installation, about 20 desks." },
-  { from: "ai", text: "Thanks, Sara. I have Tuesday at 3 PM. Shall I book it?" },
+  { from: "caller", text: "Sarah Mitchell. A full-office installation, about 20 desks." },
+  { from: "ai", text: "Thanks, Sarah. I have Tuesday at 3 PM. Shall I book it?" },
   { from: "caller", text: "Yes, please." },
   { from: "ai", text: "Done! A confirmation is on its way to your WhatsApp." },
 ] as const;
@@ -130,7 +130,7 @@ function HeroDemo() {
         </div>
 
         <dl className="x-crm-rows">
-          <CrmRow label="Name" value="Sara Ahmed" filled={step >= 2} />
+          <CrmRow label="Name" value="Sarah Mitchell" filled={step >= 2} />
           <CrmRow label="Request" value="Office installation · 20 desks" filled={step >= 2} />
           <CrmRow label="Source" value="Phone call" filled={step >= 0} />
           <CrmRow label="Appointment" value="Tue · 3:00 PM" filled={step >= 3} />
